@@ -1,2 +1,2 @@
-# PracticaSupervisadaIII-U1
+# PostWire
 Una simple API para una pequeña red social.
