@@ -25,7 +25,7 @@ const conectarDB = async () => {
   try {
     await databaseConnection()
   } catch (err) {
-    console.log(`Server | Database connection failed: ${err}`)
+    console.log(`Server  | Database connection failed: ${err}`)
     process.exit(1)
   }
 }
@@ -37,8 +37,8 @@ export const initServer = () => {
     conectarDB()
     routes(app)
     app.listen(process.env.PORT)
-    console.log(`Server | Running on port ${process.env.PORT}`)
+    console.log(`Server  | Running on port ${process.env.PORT}`)
   } catch (err) {
-    console.log(`Server | Init failed: ${err}`)
+    console.log(`Server  | Init failed: ${err}`)
   }
 }
