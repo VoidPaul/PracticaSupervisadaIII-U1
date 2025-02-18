@@ -1,0 +1,27 @@
+import { body, param } from "express-validator"
+import { userExists, usernameExists, emailExists } from "../helpers/database-validator.js"
+import { validateFields } from "./field-error-handler.js"
+import { deleteFileOnError } from "./file-error-handler.js"
+import { handleErrors } from "./error-handler.js"
+
+export const registerValidator = [
+  body("name", "Name required.").notEmpty(),
+  body("username", "Username is required.").notEmpty(),
+  body("username", "Username already in use.").custom(usernameExists),
+  body("email", "E-mail required.").notEmpty(),
+  body("email", "Enter a valid e-mail.").isEmail(),
+  body("email", "E-mail already in use.").custom(emailExists),
+  body("password", "W E A K password.").isStrongPassword(),
+  validateFields,
+  deleteFileOnError,
+  handleErrors
+]
+
+export const loginValidator = [
+  body("username", "Invalid username format.").optional().isString(),
+  body("email", "Enter a valid e-mail.").optional().isEmail(),
+  body("password", "Invalid password.").isLength({ min: 8 }),
+  validateFields,
+  deleteFileOnError,
+  handleErrors,
+]
