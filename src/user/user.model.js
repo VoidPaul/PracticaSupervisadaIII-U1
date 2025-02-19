@@ -35,7 +35,7 @@ const userSchema = Schema(
     },
     profilePicture: {
       type: String,
-      //default: "",
+      default: "default-pfp.png",
     },
     /**role: {
       type: String,
