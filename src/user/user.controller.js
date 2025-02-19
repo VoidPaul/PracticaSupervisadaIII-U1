@@ -1,4 +1,4 @@
-import { hash } from "argon2"
+import { hash, verify } from "argon2"
 import User from "./user.model.js"
 
 export const getUserById = async (req, res) => {
@@ -37,6 +37,7 @@ export const updateUser = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "User updated.",
+      user,
     })
   } catch (err) {
     return res.status(500).json({
