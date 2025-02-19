@@ -5,7 +5,7 @@ import { fileURLToPath } from "url"
 const CURRENT_DIR = dirname(fileURLToPath(import.meta.url))
 const MIMETYPES = ["image/png", "image/jpg", "image/jpeg"]
 const MAX_SIZE = 100000000
-const PFP_DIR = "../../public/uploads/profile-pictures"
+const PFP_DIR = "../../public/uploads/pictures/profile"
 
 const createMulterConfig = (destinationFolder) => {
   return multer({

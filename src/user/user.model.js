@@ -37,12 +37,12 @@ const userSchema = Schema(
       type: String,
       //default: "",
     },
-    role: {
+    /**role: {
       type: String,
-      enum: ["ADMIN", "CUSTOMER"],
+      enum: ["ADMIN", "USER"],
 
       required: true,
-    },
+    },*/
     status: {
       type: Boolean,
       default: true,

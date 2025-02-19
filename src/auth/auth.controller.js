@@ -7,14 +7,14 @@ export const register = async (req, res) => {
     const data = req.body
 
     let profilePicture = req.file ? req.file.filename : null
-    const encryptedPassword = hash(data.password)
+    const encryptedPassword = await hash(data.password)
 
     data.password = encryptedPassword
     data.profilePicture = profilePicture
 
     const user = await User.create(data)
 
-    return res.status(200).json({
+    return res.status(201).json({
       message: "User registered successfuly.",
       name: user.name,
       email: user.email,
