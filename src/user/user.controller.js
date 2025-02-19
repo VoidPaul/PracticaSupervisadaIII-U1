@@ -22,6 +22,7 @@ export const getUserById = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Error getting user.",
+      error: err.message,
     })
   }
 }
@@ -41,6 +42,7 @@ export const updateUser = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Error updating user.",
+      error: err.message,
     })
   }
 }
@@ -73,6 +75,7 @@ export const updatePassword = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Error changing password.",
+      error: err.message,
     })
   }
 }
