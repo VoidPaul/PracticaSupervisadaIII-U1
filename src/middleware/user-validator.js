@@ -22,6 +22,27 @@ export const loginValidator = [
   body("email", "Enter a valid e-mail.").optional().isEmail(),
   body("password", "Invalid password.").isLength({ min: 8 }),
   validateFields,
-  deleteFileOnError,
+  handleErrors,
+]
+
+export const getUserByIdValidator = [
+  param("uid", "Invalid MongoDB ID.").isMongoId(),
+  param("uid").custom(userExists),
+  validateFields,
+  handleErrors,
+]
+
+export const updateUserValidator = [
+  param("uid", "Invalid MongoDB ID.").isMongoId(),
+  param("uid").custom(userExists),
+  validateFields,
+  handleErrors,
+]
+
+export const updatePasswordValidator = [
+  param("uid", "Invalid MongoDB ID.").isMongoId(),
+  param("uid").custom(userExists),
+  body("newPassword", "New password cannot be W E A K.").isStrongPassword(),
+  validateFields,
   handleErrors,
 ]
