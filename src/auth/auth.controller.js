@@ -6,7 +6,7 @@ export const register = async (req, res) => {
   try {
     const data = req.body
 
-    let profilePicture = req.file ? req.file.filename : null
+    let profilePicture = req.file ? req.file.filename : "default-pfp.png"
     const encryptedPassword = await hash(data.password)
 
     data.password = encryptedPassword
