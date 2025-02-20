@@ -5,7 +5,7 @@ import {
   updateUserValidator,
   updatePasswordValidator,
   updateProfilePictureValidator,
-} from "../middleware/user-validator.js"
+} from "../middleware/validate-user.js"
 import { uploadProfilePicture } from "../middleware/multer-uploads.js"
 
 const router = Router()

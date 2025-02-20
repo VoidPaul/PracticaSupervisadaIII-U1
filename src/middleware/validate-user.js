@@ -1,5 +1,6 @@
 import { body, param } from "express-validator"
 import { userExists, usernameExists, emailExists } from "../helpers/database-validator.js"
+import { validateJWT } from "./validate-jwt.js"
 import { validateFields } from "./field-error-handler.js"
 import { deleteFileOnError } from "./file-error-handler.js"
 import { handleErrors } from "./error-handler.js"
@@ -33,6 +34,7 @@ export const getUserByIdValidator = [
 ]
 
 export const updateUserValidator = [
+  validateJWT,
   param("uid", "Invalid MongoDB ID.").isMongoId(),
   param("uid").custom(userExists),
   validateFields,
@@ -40,6 +42,7 @@ export const updateUserValidator = [
 ]
 
 export const updatePasswordValidator = [
+  validateJWT,
   param("uid", "Invalid MongoDB ID.").isMongoId(),
   param("uid").custom(userExists),
   body("newPassword", "New password cannot be W E A K.").isStrongPassword(),
@@ -48,6 +51,7 @@ export const updatePasswordValidator = [
 ]
 
 export const updateProfilePictureValidator = [
+  validateJWT,
   param("uid", "Invalid MongoDB ID.").isMongoId(),
   param("uid").custom(userExists),
   validateFields,
