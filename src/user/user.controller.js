@@ -3,7 +3,6 @@ import User from "./user.model.js"
 import fs from "fs/promises"
 import { join, dirname } from "path"
 import { fileURLToPath } from "url"
-import { unlink } from "fs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -103,13 +102,11 @@ export const updateProfilePicture = async (req, res) => {
     const user = await User.findById(uid)
 
     if (user.profilePicture) {
-      const oldProfilePic = join(
-        __dirname,
-        "../../public/uploads/pictures/profile",
-        user.profilePicture
-      )
+      const oldProfilePic = join(__dirname, "../../public/uploads/pictures/profile", user.profilePicture)
 
-      fs.unlink(oldProfilePic)
+      if (oldProfilePic !== "default-pfp.png") {
+        fs.unlink(oldProfilePic)
+      }
     }
 
     user.profilePicture = newProfilePic
