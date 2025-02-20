@@ -14,7 +14,7 @@ export const registerValidator = [
   body("password", "W E A K password.").isStrongPassword(),
   validateFields,
   deleteFileOnError,
-  handleErrors
+  handleErrors,
 ]
 
 export const loginValidator = [
@@ -43,6 +43,13 @@ export const updatePasswordValidator = [
   param("uid", "Invalid MongoDB ID.").isMongoId(),
   param("uid").custom(userExists),
   body("newPassword", "New password cannot be W E A K.").isStrongPassword(),
+  validateFields,
+  handleErrors,
+]
+
+export const updateProfilePictureValidator = [
+  param("uid", "Invalid MongoDB ID.").isMongoId(),
+  param("uid").custom(userExists),
   validateFields,
   handleErrors,
 ]

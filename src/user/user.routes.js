@@ -4,8 +4,9 @@ import {
   getUserByIdValidator,
   updateUserValidator,
   updatePasswordValidator,
-  //updateProfilePictureValidator
+  updateProfilePictureValidator,
 } from "../middleware/user-validator.js"
+import { uploadProfilePicture } from "../middleware/multer-uploads.js"
 
 const router = Router()
 
@@ -16,9 +17,10 @@ router.put("/update/:uid", updateUserValidator, updateUser)
 router.patch("/update/password/:uid", updatePasswordValidator, updatePassword)
 
 router.patch(
-  "/picture/:uid",
-  updateProfilePicture.single("profilePicture")
-  /**updateProfilePictureValidator, updateProfilePicture */
+  "/update/picture/:uid",
+  uploadProfilePicture.single("profilePicture"),
+  updateProfilePictureValidator,
+  updateProfilePicture
 )
 
 export default router
