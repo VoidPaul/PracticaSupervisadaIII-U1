@@ -15,23 +15,23 @@ export const validateJWT = async (req, res, next) => {
     token = token.replace(/^Bearer\s+/, "")
 
     const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY)
-    const user = await User.findById(uid)
+    const verifiedUser = await User.findById(uid)
 
-    if (!user) {
+    if (!verifiedUser) {
       return res.status(400).json({
         success: false,
         message: "User does not exist.",
       })
     }
 
-    if (!user.status) {
+    if (!verifiedUser.status) {
       return res.status(400).json({
         success: false,
         message: "User disabled.",
       })
     }
 
-    req.user = user
+    req.user = verifiedUser
     next()
   } catch (err) {
     return res.status(500).json({
