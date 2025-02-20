@@ -101,12 +101,10 @@ export const updateProfilePicture = async (req, res) => {
 
     const user = await User.findById(uid)
 
-    if (user.profilePicture) {
+    if (user.profilePicture && user.profilePicture !== "default-pfp.png") {
       const oldProfilePic = join(__dirname, "../../public/uploads/pictures/profile", user.profilePicture)
 
-      if (oldProfilePic !== "default-pfp.png") {
-        fs.unlink(oldProfilePic)
-      }
+      fs.unlink(oldProfilePic)
     }
 
     user.profilePicture = newProfilePic
