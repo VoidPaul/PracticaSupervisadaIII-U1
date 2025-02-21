@@ -1,6 +1,7 @@
 import { body, param } from "express-validator"
 import { userExists, usernameExists, emailExists } from "../helpers/database-validator.js"
 import { validateJWT } from "./validate-jwt.js"
+import { checkUID } from "./validate-uid.js"
 import { validateFields } from "./field-error-handler.js"
 import { deleteFileOnError } from "./file-error-handler.js"
 import { handleErrors } from "./error-handler.js"
@@ -37,6 +38,7 @@ export const updateUserValidator = [
   validateJWT,
   param("uid", "Invalid MongoDB ID.").isMongoId(),
   param("uid").custom(userExists),
+  body("username", "Username already in use.").custom(usernameExists),
   validateFields,
   handleErrors,
 ]
@@ -52,6 +54,7 @@ export const updatePasswordValidator = [
 
 export const updateProfilePictureValidator = [
   validateJWT,
+  checkUID(""),
   param("uid", "Invalid MongoDB ID.").isMongoId(),
   param("uid").custom(userExists),
   validateFields,
