@@ -17,7 +17,7 @@ router.put("/update/:uid", updateUserValidator, updateUser)
 router.patch("/update/password/:uid", updatePasswordValidator, updatePassword)
 
 router.patch(
-  "/update/picture/:uid",
+  "/update/picture/",
   uploadProfilePicture.single("profilePicture"),
   updateProfilePictureValidator,
   updateProfilePicture
