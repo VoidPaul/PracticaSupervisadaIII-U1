@@ -88,7 +88,7 @@ export const updatePassword = async (req, res) => {
 
 export const updateProfilePicture = async (req, res) => {
   try {
-    const { uid } = req.params
+    const uid = req.user._id
 
     let newProfilePic = req.file ? req.file.filename : "default-pfp.png"
 

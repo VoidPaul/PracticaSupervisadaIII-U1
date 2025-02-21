@@ -51,11 +51,4 @@ export const updatePasswordValidator = [
   handleErrors,
 ]
 
-export const updateProfilePictureValidator = [
-  validateJWT,
-  header("uid", "Invalid MongoDB ID.").isMongoId(),
-  header("uid").custom(userExists),
-  validateFields,
-  deleteFileOnError,
-  handleErrors,
-]
+export const updateProfilePictureValidator = [validateJWT, validateFields, deleteFileOnError, handleErrors]
