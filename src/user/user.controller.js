@@ -34,7 +34,7 @@ export const getUserById = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    const { uid } = req.params
+    const uid = req.user._id
     const data = req.body
 
     const user = await User.findByIdAndUpdate(uid, data, { new: true })
@@ -55,7 +55,7 @@ export const updateUser = async (req, res) => {
 
 export const updatePassword = async (req, res) => {
   try {
-    const { uid } = req.params
+    const uid = req.user._id
     const { newPassword } = req.body
 
     const user = await User.findById(uid)

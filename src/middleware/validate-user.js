@@ -35,8 +35,6 @@ export const getUserByIdValidator = [
 
 export const updateUserValidator = [
   validateJWT,
-  param("uid", "Invalid MongoDB ID.").isMongoId(),
-  param("uid").custom(userExists),
   body("username", "Username already in use.").custom(usernameExists),
   validateFields,
   handleErrors,
@@ -44,8 +42,6 @@ export const updateUserValidator = [
 
 export const updatePasswordValidator = [
   validateJWT,
-  param("uid", "Invalid MongoDB ID.").isMongoId(),
-  param("uid").custom(userExists),
   body("newPassword", "New password cannot be W E A K.").isStrongPassword(),
   validateFields,
   handleErrors,
