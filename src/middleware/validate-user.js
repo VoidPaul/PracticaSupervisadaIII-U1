@@ -56,5 +56,6 @@ export const updateProfilePictureValidator = [
   header("uid", "Invalid MongoDB ID.").isMongoId(),
   header("uid").custom(userExists),
   validateFields,
+  deleteFileOnError,
   handleErrors,
 ]
