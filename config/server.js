@@ -8,7 +8,7 @@ import { databaseConnection } from "./database.js"
 import authRoutes from "../src/auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
-// import postRoutes from "../src/post/post.routes.js"
+import postRoutes from "../src/post/post.routes.js"
 // import commentRoutes from "../src/comment/comment.routes.js"
 import apiLimiter from "../src/middleware/rate-limit.js"
 
@@ -43,7 +43,7 @@ const routes = (app) => {
   app.use("/postwire/v1/auth", authRoutes)
   app.use("/postwire/v1/user/", userRoutes)
   app.use("/postwire/v1/category", categoryRoutes)
-  //app.use("/postwire/v1/post/", postRoutes)
+  app.use("/postwire/v1/post/", postRoutes)
   //app.use("/postwire/v1/comment/", commentRoutes)
 }
 
