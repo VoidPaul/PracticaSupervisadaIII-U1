@@ -6,6 +6,7 @@ const categorySchema = Schema(
     name: {
       type: String,
       required: [true, "Name required."],
+      unique: true,
     },
     status: {
       type: Boolean,

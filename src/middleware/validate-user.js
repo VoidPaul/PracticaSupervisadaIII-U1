@@ -1,4 +1,4 @@
-import { body, header, param } from "express-validator"
+import { body, param } from "express-validator"
 import { userExists, usernameExists, emailExists } from "../helpers/database-validator.js"
 import { validateJWT } from "./validate-jwt.js"
 import { validateFields } from "./field-error-handler.js"
