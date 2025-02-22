@@ -12,6 +12,8 @@ router.post("/add", newCategoryValidator, newCategory)
 
 router.get("/", getCategories)
 
-router.put("/update/:id", updateCategoryValidator, removeCategory)
+router.put("/update/:id", updateCategoryValidator, updateCategory)
 
 router.delete("/remove/:id", removeCategoryValidator, removeCategory)
+
+export default router
